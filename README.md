@@ -7,14 +7,14 @@
 
 通过本项目，我系统掌握了从 镜像制作 → 集群部署 → 网络暴露 → 故障排查与验证测试 的端到端流程，加深了对 Kubernetes 架构、服务暴露机制与 AI 平台基础运维思路 的理解。
 
-## 🚀 环境说明
+## 环境说明
 - Python  + PyTorch 
 - Docker Desktop (K8s Enabled)
 - kubectl CLI 工具
 - 镜像仓库：本地 registry
 
 
-## 🧱 架构设计
+## 架构设计
 <img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/ab9e5453-0baf-4a57-a682-bb618f25a568" />
 
 
@@ -158,13 +158,13 @@ command: ["python", "app.py"]
 
 三、实时监控与资源分析
 
-实时监听 Pod 状态
+1.实时监听 Pod 状态
 ```bash
 kubectl get pods -w
 ```
 -w 参数表示 watch，会实时输出 Pod 状态变化过程。
 
-查看资源使用情况
+2.查看资源使用情况
 ```bash
 kubectl top pods
 kubectl top nodes
@@ -175,7 +175,7 @@ kubectl top nodes
 
 可用于判断 Pod 或节点是否资源紧张。
 
-查看系统事件时间线
+3.查看系统事件时间线
 ```bash
 kubectl get events --sort-by=.metadata.creationTimestamp | tail -10
 ```
