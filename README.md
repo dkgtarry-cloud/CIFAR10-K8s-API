@@ -88,6 +88,7 @@ curl -v -X POST -F "file=@test_image.png" http://tarry.cifar10.local/predict
 
 一、镜像拉取失败（ImagePullBackOff）
 手动修改Deployment.yaml为错误镜像名进行测试
+
 <img width="865" height="1027" alt="image" src="https://github.com/user-attachments/assets/bb9ed273-9dd2-4ea8-803c-022d584bf188" />
 
 ```bash
@@ -95,7 +96,9 @@ kubectl get pods
 ```
 
 问题表现：
+
 <img width="865" height="143" alt="image" src="https://github.com/user-attachments/assets/fbb3a3fa-3edc-48c2-81b6-437cc682b951" />
+
 排查命令：
 ```bash
 kubectl describe pod <pod-name>
@@ -105,6 +108,7 @@ kubectl describe pod <pod-name>
 Failed to pull image "cifar-api:wrong-v1": failed to resolve reference ...
 ```
 <img width="865" height="205" alt="image" src="https://github.com/user-attachments/assets/41a633e2-6d9e-4c4c-b65f-0df109ff8911" />
+
 修正镜像名为正确的本地镜像（如 cifar-api:cpu-v1）
 重新部署：
 ```bash
@@ -121,7 +125,9 @@ kubectl get pods
 二、容器启动失败（CrashLoopBackOff）
 
 Deployment 中强制执行错误命令：
+
 <img width="865" height="967" alt="image" src="https://github.com/user-attachments/assets/fb779e8b-e46a-424b-8c1f-ff216740f9b3" />
+
 容器尝试运行不存在的脚本，导致启动失败并不断重启。
 ```bash
 kubectl get pods 
@@ -169,6 +175,7 @@ kubectl top nodes
 kubectl get events --sort-by=.metadata.creationTimestamp | tail -10
 ```
 显示最新系统事件（Pod 创建、重启、失败原因等）。
+
 <img width="865" height="433" alt="image" src="https://github.com/user-attachments/assets/d040f5e5-2b3a-4412-b22f-d59c06272945" />
 
 
