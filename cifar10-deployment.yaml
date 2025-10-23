@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cifar10-deployment
+  labels:
+    app: cifar10-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cifar10-api
+  template:
+    metadata:
+      labels:
+        app: cifar10-api
+    spec:
+      containers:
+      - name: cifar10-container
+        image: cifar-api:cpu-v1  
+        ports:
+        - containerPort: 5000
+        imagePullPolicy: IfNotPresent
