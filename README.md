@@ -80,6 +80,9 @@ kubectl get ingress
 curl -v -X POST -F "file=@test_image.png" http://tarry.cifar10.local/predict
 ```
 预期结果：（若无法解析域名，请在本地 hosts 文件中添加 127.0.0.1  tarry.cifar10.local ）
+```bash
+{"predict":"bird"}
+```
 
 <img width="865" height="448" alt="image" src="https://github.com/user-attachments/assets/ee7fc3af-26fa-42c2-997f-500cfb2520b4" />
 
@@ -89,7 +92,8 @@ curl -v -X POST -F "file=@test_image.png" http://tarry.cifar10.local/predict
 一、镜像拉取失败（ImagePullBackOff）
 手动修改Deployment.yaml为错误镜像名进行测试
 
-<img width="865" height="1027" alt="image" src="https://github.com/user-attachments/assets/bb9ed273-9dd2-4ea8-803c-022d584bf188" />
+<img width="573" height="680" alt="image" src="https://github.com/user-attachments/assets/3092dc0b-b35a-40b5-abe5-b2345a133148" />
+
 
 ```bash
 kubectl get pods
@@ -126,7 +130,8 @@ kubectl get pods
 
 Deployment 中强制执行错误命令：
 
-<img width="865" height="967" alt="image" src="https://github.com/user-attachments/assets/fb779e8b-e46a-424b-8c1f-ff216740f9b3" />
+<img width="550" height="615" alt="image" src="https://github.com/user-attachments/assets/891a316d-fabb-4b3a-8d76-354f59477735" />
+
 
 容器尝试运行不存在的脚本，导致启动失败并不断重启。
 ```bash
@@ -180,6 +185,3 @@ kubectl get events --sort-by=.metadata.creationTimestamp | tail -10
 
 
 
-```bash
-{"predict":"bird"}
-```
