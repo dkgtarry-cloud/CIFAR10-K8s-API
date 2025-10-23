@@ -36,15 +36,21 @@ kubectl apply -f cifar10-deployment.yaml
 ```bash
 kubectl get pods -o wide
 ```
+
 <img width="865" height="52" alt="image" src="https://github.com/user-attachments/assets/ed01ffef-496f-4307-bb35-9e693bfeebce" />
 
 <img width="865" height="95" alt="image" src="https://github.com/user-attachments/assets/d10df6b8-761b-4957-b181-b99e76ff4d42" />
+
 暴露 Service
+
 ```bash
 kubectl apply -f cifar10-service.yaml
 ```
+
 <img width="865" height="48" alt="image" src="https://github.com/user-attachments/assets/6618ddff-e4b3-40c0-bd37-443913d04edd" />
+
 <img width="865" height="72" alt="image" src="https://github.com/user-attachments/assets/99448cb8-e255-4857-8a85-e24d1ca47c2d" />
+
 测试服务：
 ```bash
 curl -X POST -F "file=@test_image.png" http://localhost:30080/predict
@@ -54,13 +60,17 @@ curl -X POST -F "file=@test_image.png" http://localhost:30080/predict
 {"predict":"bird"}
 ```
 <img width="865" height="46" alt="image" src="https://github.com/user-attachments/assets/e34637b4-7928-4a99-8d96-37f9f46fa640" />
+
 配置 Ingress
+
 ```bash
 kubectl apply -f cifar10-ingress.yaml
 ```
 提示：annotation "kubernetes.io/ingress.class" 已弃用，应改为
 spec.ingressClassName: nginx
+
 <img width="865" height="86" alt="image" src="https://github.com/user-attachments/assets/f3a331c5-5db9-4317-befb-44f632a118f9" />
+
 验证 Ingress 状态：
 ```bash
 kubectl get ingress
@@ -70,7 +80,10 @@ kubectl get ingress
 curl -v -X POST -F "file=@test_image.png" http://tarry.cifar10.local/predict
 ```
 预期结果：（若无法解析域名，请在本地 hosts 文件中添加 127.0.0.1  tarry.cifar10.local ）
+
 <img width="865" height="448" alt="image" src="https://github.com/user-attachments/assets/ee7fc3af-26fa-42c2-997f-500cfb2520b4" />
+
+
 ## 故障排查与性能监控
 
 一、镜像拉取失败（ImagePullBackOff）
